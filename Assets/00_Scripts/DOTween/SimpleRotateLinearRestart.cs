@@ -19,8 +19,7 @@ public class SimpleRotateLinearRestart : MonoBehaviour
             .DORotate(
                 new Vector3(0f, 0f, 360f),
                 2f,
-                RotateMode.FastBeyond360
-            )
+                RotateMode.FastBeyond360)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Restart);
     }

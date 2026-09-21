@@ -19,7 +19,6 @@ public class SimpleRotateFastBeyond : MonoBehaviour
             .DORotate(
                 new Vector3(0f, 0f, 360f), 
                 2f, 
-                RotateMode.FastBeyond360
-            );
+                RotateMode.FastBeyond360);
     }
 }

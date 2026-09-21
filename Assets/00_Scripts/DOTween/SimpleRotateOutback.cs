@@ -18,8 +18,7 @@ public class SimpleRotateOutback : MonoBehaviour
         transform.DORotate(
             transform.eulerAngles + new Vector3(0f, 0f, 360f),
             2f,
-            RotateMode.FastBeyond360
-        )
+            RotateMode.FastBeyond360)
         .SetEase(Ease.OutBack);
     }
 }

@@ -19,7 +19,6 @@ public class SimpleRotateLocalAxisAdd : MonoBehaviour
             .DORotate(
                 new Vector3(0f, 0f, 360),
                 2f,
-                RotateMode.LocalAxisAdd
-            );
+                RotateMode.LocalAxisAdd);
     }
 }

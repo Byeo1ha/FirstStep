@@ -45,7 +45,12 @@ public class SequenceAppend : MonoBehaviour
                 GetComponent<RectTransform>()
                 .DOAnchorPosX(100f, 1f)
             )
-            .Append(transform.DOScale(2f, 1f))
+            .SetEase(Ease.OutCubic)
             .OnComplete(() => IsEvent = false);
+
+        sequence
+            .Join(transform.DOScale(2f, 1f))
+            .SetEase(Ease.OutBack);
+            
     }
 }

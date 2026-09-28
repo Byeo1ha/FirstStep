@@ -6,7 +6,6 @@ public class ColorChange : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer targetImage;
     [SerializeField] private RawImage rawImage;
-    [SerializeField] private Color newColor = Color.red;
 
     private Color originalImageColor;
     private Color originalRawColor;
@@ -22,40 +21,57 @@ public class ColorChange : MonoBehaviour
         originalRawColor = rawImage.color;
     }
 
-    public void ToggleColorButton()
+    public void ToggleColorRedButton()
+    {
+        ToggleColor(Color.red);
+    }
+
+    public void ToggleColorBlueButton()
+    {
+        ToggleColor(Color.blue);
+    }
+
+    public void ToggleColorGreenButton()
+    {
+        ToggleColor(Color.green);
+    }
+
+    private void ToggleColor(Color color)
     {
         if (isEvent) return;
 
-        if (isChange) SetChangeColor(false);
-        else SetChangeColor(true);
+        if (isChange && targetImage.color == color) 
+            SetChangeColor(false, color);
+        else 
+            SetChangeColor(true, color);
     }
 
-    private void SetChangeColor(bool value)
+    private void SetChangeColor(bool value, Color color)
     {
         sequence?.Kill();
         sequence = DOTween.Sequence();
 
-        Color color;
-        Color RawColor;
+        Color changeColor;
+        Color rawColor;
 
         isEvent = true;
 
         if (value) 
         {
-            color = newColor;
-            RawColor = newColor;
+            changeColor = color;
+            rawColor = color;
             isChange = true;
         }
         else 
         {
-            color = originalImageColor;
-            RawColor = originalRawColor; 
+            changeColor = originalImageColor;
+            rawColor = originalRawColor; 
             isChange = false;
         }
 
         sequence
-            .Append(targetImage.DOColor(color, 1f))
-            .Join(rawImage.DOColor(RawColor, 1f))
+            .Append(targetImage.DOColor(changeColor, 1f))
+            .Join(rawImage.DOColor(rawColor, 1f))
             .OnComplete(() => isEvent = false);
     }
 }
